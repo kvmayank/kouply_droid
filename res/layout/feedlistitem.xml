@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dip" >
+
+    <RelativeLayout
+        android:layout_width="40dip"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dip"
+            android:layout_marginTop="30dip"
+            android:background="@drawable/feed_scorebadge"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/scoretext"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:ellipsize="marquee"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="100"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/userimg"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:background="@android:color/white"
+            android:padding="2dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/feed_female60" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/toptext"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:text="line 1"
+                    android:textSize="18dip"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/middletext"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:gravity="top"
+                    android:singleLine="true"
+                    android:text="line 2"
+                    android:textColor="#ccc"
+                    android:textSize="14dip" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="40dip"
+                android:layout_height="fill_parent"
+                android:gravity="top"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:src="@drawable/feed_action_shared" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/activitypicture"
+            android:layout_width="200dip"
+            android:layout_height="200dip"
+            android:layout_marginTop="5dip"
+            android:background="@android:color/white"
+            android:padding="2dip"
+            android:scaleType="fitXY"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/viewcommentsview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nocommentsview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <ImageView
+                android:id="@+id/addcommentimg"
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:layout_gravity="top"
+                android:scaleType="fitXY"
+                android:src="@drawable/feed_comments" />
+
+            <TextView
+                android:id="@+id/addcomment"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
+                android:singleLine="true"
+                android:text="Add Comment"
+                android:textColor="@android:color/holo_red_dark" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_centerInParent="true"
+    android:background="@drawable/lightbackground"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:tileMode="repeat"
+    android:weightSum="1" >
+
+    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="20dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip"
+        android:text="@string/signup"
+        android:textColor="#000"
+        android:textSize="40dip" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="fill_parent"
+        android:layout_height="44dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/toprounded_edittext"
+        android:hint="@string/name"
+        android:padding="5dip"
+        android:singleLine="true"
+        android:textColor="#778BB0"
+        android:textColorHint="#778BB0"
+        android:textSize="14dip"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="fill_parent"
+        android:layout_height="44dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="1dip"
+        android:background="#fff"
+        android:hint="@string/email"
+        android:padding="5dip"
+        android:singleLine="true"
+        android:textColor="#778BB0"
+        android:textColorHint="#778BB0"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="fill_parent"
+        android:layout_height="44dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="1dip"
+        android:background="#fff"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="5dip"
+        android:singleLine="true"
+        android:textColor="#778BB0"
+        android:textColorHint="#778BB0"
+        android:textSize="14dip"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/partneremail"
+        android:layout_width="fill_parent"
+        android:layout_height="44dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="1dip"
+        android:background="#fff"
+        android:hint="@string/partneremail"
+        android:padding="5dip"
+        android:singleLine="true"
+        android:textColor="#778BB0"
+        android:textColorHint="#778BB0"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <Switch
+        android:id="@+id/gender"
+        android:layout_width="fill_parent"
+        android:layout_height="44dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="1dip"
+        android:background="@drawable/bottomrounded_edittext"
+        android:checked="true"
+        android:hint="@string/gender"
+        android:padding="5dip"
+        android:textColor="#778BB0"
+        android:textOff="Female"
+        android:textOn="Male"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <Button
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/button"
+        style="@style/SplashButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dip"
+        android:text="@string/signup" />
+
+</LinearLayout>

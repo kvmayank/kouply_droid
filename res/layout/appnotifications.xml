@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/notifications"
+    android:layout_width="200dp"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:tileMode="repeat" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/appmenuheader"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black" 
+        android:padding="10dip"
+        >
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dip"
+            android:text="Notifications"
+            android:textColor="@android:color/white"
+            android:textSize="18dip" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="#ffff0000"
+        android:divider="@android:color/holo_red_dark"
+        android:dividerHeight="1dip"
+        android:scrollbars="none" >
+    </ListView>
+	<TextView android:id="@android:id/empty"
+		android:layout_width="wrap_content"
+		android:layout_height="0dip"
+		android:layout_weight="1.0"
+		android:textColor="@android:color/white"
+		android:text="No new notifications..."
+		/>
+</LinearLayout>

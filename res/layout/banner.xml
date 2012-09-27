@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bannerlayout"
+    android:layout_width="fill_parent"
+    android:layout_height="200dip"
+    android:background="@drawable/lightbackground"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:tileMode="repeat" >
+    <ImageView
+        android:id="@+id/coverpic"
+        android:layout_width="fill_parent"
+        android:layout_height="160dip"
+        android:layout_gravity="top"
+        android:scaleType="fitXY"
+        android:src="@drawable/defaultcover" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/coverpic"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <ImageView
+            android:id="@+id/feed_menu"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="0.1"
+            android:src="@drawable/feed_nav" />
+
+        <ImageView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="0.8"
+            android:src="@drawable/logonavbar" />
+
+        <ImageView
+            android:id="@+id/feed_notifications"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="0.1"
+            android:src="@drawable/feed_notification" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/yellowstrip"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_gravity="top"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:layout_marginTop="140dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/feed_profilebkg" />
+
+    <ImageView
+        android:id="@+id/userpic"
+        android:layout_width="60dip"
+        android:layout_height="60dip"
+        android:layout_alignLeft="@+id/yellowstrip"
+        android:layout_alignTop="@+id/yellowstrip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginTop="-10dip"
+        android:src="@drawable/feed_male60" />
+
+    <ImageView
+        android:id="@+id/partnerpic"
+        android:layout_width="60dip"
+        android:layout_height="60dip"
+        android:layout_alignLeft="@+id/userpic"
+        android:layout_alignTop="@+id/userpic"
+        android:layout_marginLeft="70dip"
+        android:src="@drawable/feed_female60" />
+
+    <ImageView
+        android:id="@+id/feedscorestar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/partnerpic"
+        android:layout_alignTop="@+id/yellowstrip"
+        android:layout_marginLeft="70dip"
+        android:src="@drawable/feed_score" />
+
+    <TextView
+        android:id="@+id/totalscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/feedscorestar"
+        android:layout_alignTop="@+id/yellowstrip"
+        android:layout_marginLeft="40dip"
+        android:layout_marginTop="5dip"
+        android:text="1080"
+        android:textColor="#fff"
+        android:textSize="20dip" />
+
+</RelativeLayout>
