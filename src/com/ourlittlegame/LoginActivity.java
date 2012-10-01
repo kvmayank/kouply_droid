@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,16 @@ public class LoginActivity extends Activity implements
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				doLogin(v);
+			}
+		});
+		
+		final ImageView back = (ImageView) findViewById(R.id.back);
+		back.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				MyApp myapp = (MyApp)getApplicationContext();
+				Intent myIntent = new Intent(myapp, OurLittleGameActivity.class);
+				startActivity(myIntent);
+				finish();
 			}
 		});
 	}

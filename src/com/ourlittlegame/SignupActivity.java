@@ -4,11 +4,13 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -70,6 +72,16 @@ public class SignupActivity extends Activity implements
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				doSignup(v);
+			}
+		});
+		
+		final ImageView back = (ImageView) findViewById(R.id.back);
+		back.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				MyApp myapp = (MyApp)getApplicationContext();
+				Intent myIntent = new Intent(myapp, OurLittleGameActivity.class);
+				startActivity(myIntent);
+				finish();
 			}
 		});
 	}

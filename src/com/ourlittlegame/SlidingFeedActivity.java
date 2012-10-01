@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -282,4 +285,33 @@ public class SlidingFeedActivity extends android.app.Activity implements
 		}		
 		updateDisplay();
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.actionpad, menu);
+		return true;
+	}		
+		
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		MyApp myapp = ((MyApp)getApplicationContext());
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.acknowledge:
+	    	/*Intent myIntent = new Intent(getApplicationContext(), NewPlanActivity.class);
+	    	myIntent.putExtra("planid", plan.id);
+            startActivityForResult(myIntent, REQUEST_CODE_EDITPLAN);*/
+	        return true;
+	    case R.id.compliment:	    	
+	    	return true;
+	    case R.id.message:
+	    	return true;	    	
+	    case R.id.photo:
+	    	return true;	    	
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
+
 }
