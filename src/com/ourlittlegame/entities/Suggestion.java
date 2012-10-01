@@ -53,11 +53,19 @@ public class Suggestion  implements Parcelable {
 		return JsonUtils.getIntProperty(jsonObject, "id", 0);
 	}
 
-	public String getKind() {
-		return JsonUtils.getStringProperty(jsonObject, "kind", "");
+	public String getType() {
+		return JsonUtils.getStringProperty(jsonObject, "type", "");
 	}
 
-	public String getDescription() {
-		return JsonUtils.getStringProperty(jsonObject, "description", "");
+	public String getTextCaption() {
+		if (jsonObject.has("text")) {
+			try {
+				return JsonUtils.getStringProperty(jsonObject.getJSONObject("text"), "caption", "");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return "";
 	}
 }

@@ -6,8 +6,10 @@ import java.util.List;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ourlittlegame.MyApp;
@@ -21,6 +23,7 @@ public class SuggestionListAdaptor  extends ArrayAdapter<Suggestion> {
 	Context context;
 	
 	public interface IListener {
+		void onUseSuggestion(int id);
 	}
 	
 	public SuggestionListAdaptor(Context context, int textViewResourceId,
@@ -57,10 +60,15 @@ public class SuggestionListAdaptor  extends ArrayAdapter<Suggestion> {
 		
 		final Suggestion a = items.get(position);
 		if (a != null) {
-/*			ImageView iv = (ImageView) v.findViewById(R.id.userimg);			   
-			ImageManager.showPicture(a.getUser().getID(), 
-					a.getUser().getPicture(), iv, myapp.getExternalStorageFolder());
-*/			((TextView) v.findViewById(R.id.text)).setText(a.getDescription());
+			((TextView) v.findViewById(R.id.text)).setText(a.getTextCaption());
+			ImageView iv = (ImageView) v.findViewById(R.id.addcompliment);
+			iv.setOnClickListener(new OnClickListener() {				
+				@Override
+				public void onClick(View v) {					
+					IListener l = listenerReference.get();
+					l.onUseSuggestion(a.getID());
+				}
+			});
 		}
 		return v;
 	}

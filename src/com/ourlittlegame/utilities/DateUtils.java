@@ -9,10 +9,20 @@ import java.util.Date;
 public class DateUtils {
 
 	public static String relativeDate(String text) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ");
 		SimpleDateFormat outdf = new SimpleDateFormat("MMM dd, yyyy");
 		try {
-			Date d = sdf.parse(text);		
+			Date d;
+			if (text.endsWith("Z"))
+				d = sdf1.parse(text);
+			else if (text.charAt(text.length()-3) == ':' && text.charAt(text.length()-6) == '-') {
+				String t = text.substring(0,text.length()-3);
+				t += text.substring(text.length()-2);
+				d = sdf2.parse(t);
+			} else
+				return "";
+			
 			Date now = new Date();
 			long ms = now.getTime() - d.getTime();
 			int seconds = (int)(ms/1000);

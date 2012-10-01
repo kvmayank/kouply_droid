@@ -3,8 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
-    android:paddingLeft="5dip" 
-    android:paddingRight="5dip"
+    android:padding="5dip" 
     android:weightSum="1"
     android:gravity="center_vertical"
     >
@@ -16,7 +15,8 @@
         android:layout_height="wrap_content"
         android:gravity="top"
         android:text="You look wonderful"
-        android:textSize="16dip" />
+        android:textColor="@android:color/black"
+        android:textSize="12dip" />
 
     <ImageView
         android:id="@+id/addcompliment"

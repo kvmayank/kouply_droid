@@ -105,4 +105,13 @@ public class MyApp extends Application {
 	public List<Suggestion> getSuggestions() {
 		return this.suggestions;
 	}
+
+	public Suggestion getSuggestionById(int id) {
+		for (Iterator<Suggestion> it = this.suggestions.iterator(); it.hasNext();) {
+			Suggestion a = it.next();
+			if (a.getID() == id)
+				return a;
+		}
+		return null;
+	}
 }

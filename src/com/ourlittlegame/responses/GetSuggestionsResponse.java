@@ -77,7 +77,7 @@ public class GetSuggestionsResponse  implements Parcelable {
 				JSONArray jsUsers = jsonResponse.getJSONArray("suggestions");
 				for (int i=0;i<jsUsers.length();i++) {
 					JSONObject jso = jsUsers.getJSONObject(i);
-					if (jso.has("notification")) {
+					if (jso.has("suggestion")) {
 						Suggestion u = Suggestion.parse(jso.getJSONObject("suggestion"));
 						if (u != null)
 							ideas.add(u);

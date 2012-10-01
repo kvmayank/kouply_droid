@@ -13,21 +13,29 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dip"
-        android:layout_marginRight="5dip"
         android:background="@drawable/backgroundsmall"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:padding="5dip"
         android:tileMode="repeat"
         android:weightSum="1" >
 
-        <ImageView
-            android:id="@+id/feed_menu"
-            android:layout_width="0dip"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_weight="0.1"
-            android:src="@drawable/feed_nav" />
+            android:layout_weight="0.1" >
+
+            <Button
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/backbutton"
+                style="@style/NavBarBackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableRight="@drawable/navfeed"
+                android:paddingRight="8dip" />
+        </LinearLayout>
 
         <TextView
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,13 +47,24 @@
             android:textColor="@android:color/white"
             android:textSize="20dip" />
 
-        <ImageView
-            android:id="@+id/feed_notifications"
-            android:layout_width="0dip"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
             android:layout_weight="0.1"
-            android:src="@drawable/feed_notification" />
+            android:gravity="right" >
+
+            <Button
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/button"
+                style="@style/NavBarSmallButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="4dip"
+                android:paddingRight="4dip"
+                android:text="Save" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -63,14 +82,14 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:gravity="top"
             android:orientation="horizontal"
-            android:padding="10dip" >
+            android:padding="5dip" >
 
             <ImageView
-                android:id="@+id/icon"
-                android:layout_width="30dip"
-                android:layout_height="30dip"
+                android:id="@+id/userimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="6dip"
                 android:src="@drawable/feed_male60" />
 
@@ -96,18 +115,24 @@
 
             <Button
                 xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/button"
+                android:id="@+id/addphotobtn"
                 style="@style/SplashButton"
-                android:layout_width="200dip"
+                android:layout_width="180dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:drawableLeft="@drawable/addphotomenu"
-                android:paddingLeft="25dip"
-                android:paddingRight="25dip"
-                android:paddingTop="10dip"
+                android:paddingLeft="15dip"
+                android:paddingRight="15dip"
+                android:paddingTop="5dip"
                 android:text="Add Photo"
-                android:textColor="@android:color/darker_gray"
-                android:textStyle="bold" />
+                android:textColor="@android:color/darker_gray" />
+
+            <ImageView
+                android:id="@+id/activitypicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:padding="2dip" />
         </LinearLayout>
 
         <LinearLayout
