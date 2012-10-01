@@ -22,86 +22,171 @@
         android:textColor="#000"
         android:textSize="40dip" />
 
-    <EditText
-        android:id="@+id/name"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="44dip"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:background="@drawable/toprounded_edittext"
-        android:hint="@string/name"
-        android:padding="5dip"
-        android:singleLine="true"
-        android:textColor="#778BB0"
-        android:textColorHint="#778BB0"
-        android:textSize="14dip"
-        android:textStyle="bold" />
+        android:orientation="horizontal" >
 
-    <EditText
-        android:id="@+id/email"
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="@string/name"
+            android:textColor="#ccc" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="44dip"
+            android:background="@android:color/transparent"
+            android:padding="5dip"
+            android:singleLine="true"
+            android:textColor="#778BB0"
+            android:textColorHint="#778BB0"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="44dip"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_marginTop="1dip"
-        android:background="#fff"
-        android:hint="@string/email"
-        android:padding="5dip"
-        android:singleLine="true"
-        android:textColor="#778BB0"
-        android:textColorHint="#778BB0"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:background="@android:color/white"
+        android:orientation="horizontal" >
 
-    <EditText
-        android:id="@+id/password"
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="@string/email"
+            android:textColor="#ccc" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="fill_parent"
+            android:layout_height="44dip"
+            android:background="@android:color/transparent"
+            android:padding="5dip"
+            android:singleLine="true"
+            android:textColor="#778BB0"
+            android:textColorHint="#778BB0"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="44dip"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_marginTop="1dip"
-        android:background="#fff"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:padding="5dip"
-        android:singleLine="true"
-        android:textColor="#778BB0"
-        android:textColorHint="#778BB0"
-        android:textSize="14dip"
-        android:textStyle="bold" />
+        android:background="@android:color/white"
+        android:orientation="horizontal" >
 
-    <EditText
-        android:id="@+id/partneremail"
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="@string/password"
+            android:textColor="#ccc" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="fill_parent"
+            android:layout_height="44dip"
+            android:background="@android:color/transparent"
+            android:inputType="textPassword"
+            android:padding="5dip"
+            android:singleLine="true"
+            android:textColor="#778BB0"
+            android:textColorHint="#778BB0"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="44dip"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_marginTop="1dip"
-        android:background="#fff"
-        android:hint="@string/partneremail"
-        android:padding="5dip"
-        android:singleLine="true"
-        android:textColor="#778BB0"
-        android:textColorHint="#778BB0"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:background="@android:color/white"
+        android:orientation="horizontal" >
 
-    <Switch
-        android:id="@+id/gender"
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="@string/partneremail"
+            android:textColor="#ccc" />
+
+        <EditText
+            android:id="@+id/partneremail"
+            android:layout_width="fill_parent"
+            android:layout_height="44dip"
+            android:background="@android:color/transparent"
+            android:inputType="textPassword"
+            android:padding="5dip"
+            android:singleLine="true"
+            android:textColor="#778BB0"
+            android:textColorHint="#778BB0"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="44dip"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
-        android:layout_marginTop="1dip"
         android:background="@drawable/bottomrounded_edittext"
-        android:checked="true"
-        android:hint="@string/gender"
-        android:padding="5dip"
-        android:textColor="#778BB0"
-        android:textOff="Female"
-        android:textOn="Male"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal" >
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="@string/gender"
+            android:textColor="#ccc" />
+
+        <Switch
+            android:id="@+id/gender"
+            android:layout_width="fill_parent"
+            android:layout_height="44dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="1dip"
+            android:background="@android:color/transparent"
+            android:checked="true"
+            android:padding="5dip"
+            android:textColor="#778BB0"
+            android:textOff="Female"
+            android:textOn="Male"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <Button
         xmlns:android="http://schemas.android.com/apk/res/android"
