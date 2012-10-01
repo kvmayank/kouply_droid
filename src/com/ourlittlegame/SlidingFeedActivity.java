@@ -299,9 +299,8 @@ public class SlidingFeedActivity extends android.app.Activity implements
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	    case R.id.acknowledge:
-	    	/*Intent myIntent = new Intent(getApplicationContext(), NewPlanActivity.class);
-	    	myIntent.putExtra("planid", plan.id);
-            startActivityForResult(myIntent, REQUEST_CODE_EDITPLAN);*/
+	    	Intent myIntent = new Intent(getApplicationContext(), ComplimentActivity.class);
+            startActivityForResult(myIntent, 0);
 	        return true;
 	    case R.id.compliment:	    	
 	    	return true;

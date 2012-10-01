@@ -12,6 +12,7 @@ import com.ourlittlegame.entities.Activity;
 import com.ourlittlegame.entities.Comment;
 import com.ourlittlegame.entities.Couple;
 import com.ourlittlegame.entities.Notification;
+import com.ourlittlegame.entities.Suggestion;
 import com.ourlittlegame.entities.User;
 
 public class MyApp extends Application {
@@ -20,6 +21,7 @@ public class MyApp extends Application {
 	private String app_token;
 	private Couple couple;
 	private List<Notification> notifications = new ArrayList<Notification>();
+	private List<Suggestion> suggestions = new ArrayList<Suggestion>();
 
 	public void setFacebookToken(String access_token) {
 		this.fb_access_token = access_token;
@@ -94,5 +96,13 @@ public class MyApp extends Application {
 	
 	public List<Notification> getNotifications() {
 		return this.notifications;
+	}
+
+	public void setSuggestions(List<Suggestion> suggestions) {
+		this.suggestions  = suggestions;
+	}
+	
+	public List<Suggestion> getSuggestions() {
+		return this.suggestions;
 	}
 }

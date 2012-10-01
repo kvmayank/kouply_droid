@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/acknowledge"
+        android:icon="@drawable/ackmenu"
+        android:title="@string/acknowledge"/>
+    <item
+        android:id="@+id/compliment"
+        android:icon="@drawable/complimentmenu"
+        android:title="@string/compliment"/>
+    <item
+        android:id="@+id/photo"
+        android:icon="@drawable/addphotomenu"
+        android:title="@string/photo"/>
+    <item
+        android:id="@+id/message"
+        android:icon="@drawable/messagemenu"
+        android:title="@string/message"/>
+
+</menu>
