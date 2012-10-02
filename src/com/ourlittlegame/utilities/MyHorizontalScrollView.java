@@ -133,7 +133,7 @@ public class MyHorizontalScrollView  extends HorizontalScrollView {
             new Handler().post(new Runnable() {
                 @Override
                 public void run() {
-                    me.scrollBy(scrollToViewPos, 0);
+                    //me.scrollBy(scrollToViewPos, 0);
                 }
             });
         }

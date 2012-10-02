@@ -1,24 +1,36 @@
 package com.ourlittlegame.utilities;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
 import org.apache.http.NameValuePair;
 import org.apache.http.ProtocolException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.RedirectHandler;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.CoreProtocolPNames;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HttpContext;
 
 public class HttpUtils {
@@ -61,6 +73,60 @@ public class HttpUtils {
 		}
 	}
 
+	public void doPostMultipart(String url, List<NameValuePair> nameValuePairs, Map<String,File> files) {
+		HttpParams params = new BasicHttpParams();
+        params.setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+        DefaultHttpClient httpClient = new DefaultHttpClient(params);
+        
+        HttpPost post = new HttpPost(url);
+		System.out.println("Posting to "+url);
+        MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);  
+        
+        for (Iterator<NameValuePair> it = nameValuePairs.iterator(); it.hasNext();) {
+        	NameValuePair nvp = it.next();
+        	try {
+				multipartEntity.addPart(nvp.getName(), new StringBody(nvp.getValue()));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+        }
+        
+        for (Iterator<String> it = files.keySet().iterator(); it.hasNext();) {
+        	String name = it.next();
+        	File f = files.get(name);
+        	multipartEntity.addPart(name, new FileBody(f));
+        }
+        
+        post.setEntity(multipartEntity);
+        try {
+			httpClient.execute(post, new ResponseHandler() {
+				@Override
+			    public Object handleResponse(HttpResponse response)
+			            throws ClientProtocolException, IOException {
+					
+					Reader reader = new InputStreamReader(response.getEntity().getContent());
+					StringBuffer sb = new StringBuffer("");
+					char[] tmp = new char[1024];
+					int l;
+					while ((l = reader.read(tmp)) != -1) {
+						sb.append(tmp, 0, l);
+					}
+
+					setResponseText(sb.toString());
+					setResponseCode(response.getStatusLine().getStatusCode());
+
+					return null;
+				}
+			});
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void doPost(String url, List<NameValuePair> nameValuePairs) {
 		Reader reader = null;
 		DefaultHttpClient client = new DefaultHttpClient();

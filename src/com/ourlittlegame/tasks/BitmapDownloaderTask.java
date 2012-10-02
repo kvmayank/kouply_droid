@@ -111,7 +111,7 @@ public class BitmapDownloaderTask extends AsyncTask<String, Void, String> {
 		ImageManager.clearTask(url);
 	}
 
-/*	static void storeBitmap(Bitmap bitmap, String filename) {
+	public static boolean storeBitmap(Bitmap bitmap, String filename) {
 		try {
 			File file = new File(filename);
 			OutputStream fOut = new FileOutputStream(file);
@@ -120,12 +120,16 @@ public class BitmapDownloaderTask extends AsyncTask<String, Void, String> {
 
 				fOut.flush();
 				fOut.close();
+				
+				return true;
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}*/
+		
+		return false;
+	}
 
 	static boolean downloadBitmap(String url, String filename) {
 		final DefaultHttpClient client = new DefaultHttpClient();
