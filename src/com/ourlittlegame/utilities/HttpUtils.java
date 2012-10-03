@@ -94,7 +94,7 @@ public class HttpUtils {
         for (Iterator<String> it = files.keySet().iterator(); it.hasNext();) {
         	String name = it.next();
         	File f = files.get(name);
-        	multipartEntity.addPart(name, new FileBody(f));
+        	multipartEntity.addPart(name, new FileBody(f,"image/jpeg"));
         }
         
         post.setEntity(multipartEntity);

@@ -14,6 +14,26 @@ import android.os.Parcelable;
 import com.ourlittlegame.utilities.JsonUtils;
 
 public class Activity implements Parcelable {
+	public static class ItemizedPoint {
+		private JSONObject jsonObject;
+		
+		public ItemizedPoint(JSONObject jsa) {
+			this.jsonObject = jsa;
+		}
+
+		public static ItemizedPoint parse(JSONObject jsa) {
+			return new ItemizedPoint(jsa);
+		}
+		
+		public String getMessage() {
+			return JsonUtils.getStringProperty(jsonObject, "message", "");
+		}
+
+		public String getPoints() {
+			return JsonUtils.getStringProperty(jsonObject, "points", "");
+		}
+	}
+	
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(jsonObject.toString());
 	}
@@ -74,6 +94,23 @@ public class Activity implements Parcelable {
 		return JsonUtils.getIntProperty(jsonObject, "points", 0);
 	}
 
+	public List<ItemizedPoint> getItemizedPoints() {
+		List<ItemizedPoint> ipoints = new ArrayList<ItemizedPoint>();
+		if (jsonObject.has("itemized_points")) {
+			try {
+				JSONArray jspoints = jsonObject.getJSONArray("itemized_points");
+				for (int i = 0; i<jspoints.length(); i++) {
+					JSONObject jsp = jspoints.getJSONObject(i);
+					ipoints.add(ItemizedPoint.parse(jsp));
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
+		return ipoints;
+	}
+	
 	public int getCoupleId() {
 		return JsonUtils.getIntProperty(jsonObject, "couple_id", 0);
 	}
@@ -156,5 +193,9 @@ public class Activity implements Parcelable {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public Object getJson() {
+		return jsonObject;
 	}
 }

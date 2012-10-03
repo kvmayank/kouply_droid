@@ -39,6 +39,7 @@
 
         <TextView
             xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/headingtxt"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="0.8"
@@ -100,7 +101,7 @@
                 android:background="@android:color/transparent"
                 android:padding="5dip"
                 android:singleLine="false"
-                android:text="Type in your compliment or choose from suggestions..."
+                android:hint="Type in your compliment or choose from suggestions..."
                 android:textColor="#778BB0"
                 android:textColorHint="#778BB0"
                 android:textSize="14sp" />
@@ -141,7 +142,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:visibility="gone" 
+            >
 
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -176,6 +179,7 @@
 
                 <TextView
                     android:id="@android:id/empty"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="0dip"
                     android:layout_weight="1.0"

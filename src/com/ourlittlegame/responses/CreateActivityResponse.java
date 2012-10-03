@@ -4,6 +4,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import com.ourlittlegame.entities.Activity;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -56,5 +58,17 @@ public class CreateActivityResponse implements Parcelable {
 
 	public boolean isValid() {
 		return (responseCode == 200);
+	}
+	
+	public Activity getActivity() {
+		if (jsonResponse.has("activity")) {
+			try {
+				return Activity.parse(jsonResponse.getJSONObject("activity"));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 }

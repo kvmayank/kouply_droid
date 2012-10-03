@@ -4,8 +4,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.RejectedExecutionException;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -27,8 +29,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ourlittlegame.adaptors.SuggestionListAdaptor;
+import com.ourlittlegame.entities.Activity.ItemizedPoint;
 import com.ourlittlegame.entities.Suggestion;
 import com.ourlittlegame.entities.User;
+import com.ourlittlegame.responses.CreateActivityResponse;
 import com.ourlittlegame.responses.GetSuggestionsResponse;
 import com.ourlittlegame.tasks.BitmapDownloaderTask;
 import com.ourlittlegame.tasks.CreateActivityTask;
@@ -50,12 +54,17 @@ public class ComplimentActivity extends Activity implements
 	private static final int PICK_IMAGE = 1890;
 	
 	private ProgressDialog pd;
+	private String kind;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.compliment);
 
+		Bundle b = getIntent().getExtras();
+		this.kind = b.getString("kind");
+		((TextView) findViewById(R.id.headingtxt)).setText(this.kind);
+		
 		final MyApp myapp = (MyApp) getApplicationContext();
 		// link controls
 		txt = (EditText) findViewById(R.id.txt);
@@ -71,8 +80,8 @@ public class ComplimentActivity extends Activity implements
 			public void onClick(View v) {
 				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(); 
 				nameValuePairs.add(new BasicNameValuePair("activity[caption]", txt.getText().toString()));
-				nameValuePairs.add(new BasicNameValuePair("activity[kind]", "compliment"));
-				nameValuePairs.add(new BasicNameValuePair("activity[request_sharing]", "true"));
+				nameValuePairs.add(new BasicNameValuePair("activity[kind]", kind.toLowerCase()));
+				nameValuePairs.add(new BasicNameValuePair("request_sharing", "true"));
 				nameValuePairs.add(new BasicNameValuePair("activity[couple_id]", myapp.getCouple().getID()+""));
 				nameValuePairs.add(new BasicNameValuePair("activity[idea_id]", "0"));
 				
@@ -117,24 +126,30 @@ public class ComplimentActivity extends Activity implements
 			}
 		});
 
-		this.suggestionAdaptor = new SuggestionListAdaptor(this,
-				R.layout.suggestionslistitem, myapp.getSuggestions(), myapp,
-				this);
-		suggestionList = (ListView) findViewById(android.R.id.list);
-		suggestionList.setAdapter(this.suggestionAdaptor);
+		if (isCompliment()) {
+			this.suggestionAdaptor = new SuggestionListAdaptor(this,
+					R.layout.suggestionslistitem, myapp.getSuggestions(), myapp,
+					this);
+			suggestionList = (ListView) findViewById(android.R.id.list);
+			suggestionList.setAdapter(this.suggestionAdaptor);
 
-		GetSuggestionsTask lt = new GetSuggestionsTask(ComplimentActivity.this,myapp);
-		lt.execute();
+			GetSuggestionsTask lt = new GetSuggestionsTask(ComplimentActivity.this,myapp);
+			lt.execute();							
+		} else {
+			txt.setHint("Type your message here...");
+		}
+	}
+
+	private boolean isCompliment() {
+		return "compliment".equals(this.kind.toLowerCase());
 	}
 
 	public void beforeIdeasLoad() {
-		TextView tv = (TextView) findViewById(android.R.id.empty);
-		tv.setText("Loading suggestions ...");
+		
 	}
 
 	public void onIdeasLoad(Object result) {
-		TextView tv = (TextView) findViewById(android.R.id.empty);
-		tv.setVisibility(View.GONE);
+		findViewById(R.id.ideacontainer).setVisibility(View.VISIBLE);		;
 
 		GetSuggestionsResponse ur = (GetSuggestionsResponse) result;
 		MyApp myapp = (MyApp) getApplicationContext();
@@ -170,6 +185,8 @@ public class ComplimentActivity extends Activity implements
                     	this.selectedImagePath = filename;
                     	activityPicture.setImageBitmap(photo);
                         activityPicture.setVisibility(View.VISIBLE);
+                        
+                        ((Button) findViewById(R.id.addphotobtn)).setVisibility(View.GONE);
                     }
         		}                
         	}            
@@ -185,6 +202,15 @@ public class ComplimentActivity extends Activity implements
                 this.selectedImagePath = cursor.getString(0);
                 System.out.println(this.selectedImagePath);
                 cursor.close();
+                
+                BitmapDownloaderTask task = new BitmapDownloaderTask(activityPicture);
+                activityPicture.setTag("gallerypic");
+        		try {
+        			task.execute("gallerypic", this.selectedImagePath, 300+"", 300+"");
+        			((Button) findViewById(R.id.addphotobtn)).setVisibility(View.GONE);
+        		} catch (RejectedExecutionException e) {
+        			e.printStackTrace();
+        		}
             }
         }
     }
@@ -197,5 +223,38 @@ public class ComplimentActivity extends Activity implements
 	@Override
 	public void onActivityCreated(Object result) {
 		pd.dismiss();
+		
+		MyApp myapp = (MyApp) getApplicationContext();
+		CreateActivityResponse r = (CreateActivityResponse)result;
+		if (r.isValid()) {
+			com.ourlittlegame.entities.Activity a = r.getActivity();
+			if (a != null) {
+				myapp.getCouple().addActivity(a);
+				List<ItemizedPoint> ipoints = a.getItemizedPoints();
+				if (ipoints != null) {
+					String msg = "";
+					for (Iterator<ItemizedPoint> it = ipoints.iterator(); it.hasNext();) {
+						ItemizedPoint ip = it.next();
+						msg += ip.getMessage() + ": " + ip.getPoints();
+						if (it.hasNext())
+							msg += "\n";
+					}
+					
+					AlertDialog.Builder builder = new AlertDialog.Builder(ComplimentActivity.this);
+					builder
+					.setTitle("Points Earned")
+					.setMessage(msg)
+					.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				        	   ComplimentActivity.this.finish();
+				           }
+				       });
+					AlertDialog alert = builder.create();
+					alert.show();
+				} else {
+					finish();
+				}
+			}
+		}
 	} 
 }

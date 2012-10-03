@@ -171,8 +171,9 @@ public class SlidingFeedActivity extends android.app.Activity implements
 	}
 
 	final int RESPONSE_CODE_ADDCOMMENT = 1;
+	final int RESPONSE_CODE_CREATEACTIVITY = 2;
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == RESPONSE_CODE_ADDCOMMENT) {
+		if (requestCode == RESPONSE_CODE_ADDCOMMENT || requestCode == RESPONSE_CODE_CREATEACTIVITY) {
 			updateDisplay();
 		}
 	}
@@ -299,15 +300,30 @@ public class SlidingFeedActivity extends android.app.Activity implements
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	    case R.id.acknowledge:
-	    	Intent myIntent = new Intent(getApplicationContext(), ComplimentActivity.class);
-            startActivityForResult(myIntent, 0);
+		    {
+		    	Intent myIntent = new Intent(getApplicationContext(), ComplimentActivity.class);
+		    	myIntent.putExtra("kind", "Acknowledge");
+	            startActivityForResult(myIntent, RESPONSE_CODE_CREATEACTIVITY);
+		    	
+		    }
 	        return true;
-	    case R.id.compliment:	    	
-	    	return true;
+	    case R.id.compliment:
+		    {
+		    	Intent myIntent = new Intent(getApplicationContext(), ComplimentActivity.class);
+		    	myIntent.putExtra("kind", "Compliment");
+	            startActivityForResult(myIntent, RESPONSE_CODE_CREATEACTIVITY);	    	
+		    }
+	        return true;
 	    case R.id.message:
 	    	return true;	    	
 	    case R.id.photo:
-	    	return true;	    	
+		    {
+		    	Intent myIntent = new Intent(getApplicationContext(), ComplimentActivity.class);
+		    	myIntent.putExtra("kind", "Photo");
+	            startActivityForResult(myIntent, RESPONSE_CODE_CREATEACTIVITY);
+		    	
+		    }
+	        return true;   	
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }

@@ -107,6 +107,22 @@ public class Couple implements Serializable {
 		return activityList;
 	}
 
+
+	public void addActivity(com.ourlittlegame.entities.Activity a) {
+		if (jsonObject.has("activities")) {
+			try {
+				JSONArray jsActivities = jsonObject.getJSONArray("activities");
+				JSONObject js = new JSONObject();
+				js.put("activity", a.getJson());
+				jsActivities.put(0,js);
+				this.activityList.clear();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public User getCurrentUser() {
 		List<User> l = getUsers();
 		for (Iterator<User> it = l.iterator(); it.hasNext();) {

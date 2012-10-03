@@ -59,6 +59,7 @@ public class BitmapDownloaderTask extends AsyncTask<String, Void, String> {
 		if (use_cache) {
 			File localImage = new File(filename);
 			if (localImage.exists()) {
+				System.out.println("Using cached image: "+filename);
 				return filename;
 			}
 		}
