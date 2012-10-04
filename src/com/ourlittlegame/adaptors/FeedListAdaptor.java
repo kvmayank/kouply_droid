@@ -77,8 +77,17 @@ public class FeedListAdaptor extends ArrayAdapter<Activity> {
 			ImageView av = (ImageView) v.findViewById(R.id.activitypicture);
 			av.setImageBitmap(null);
 			if (MiscUtils.removeNull(a.getAsset()).length() > 0) {
-				av.setVisibility(View.VISIBLE);					
-				ImageManager.showPicture(a.getAsset(), av, myapp.getExternalStorageFolder());
+				float ratio = 0;
+				try {
+					ratio = Float.parseFloat(a.getRatio());
+				} catch (Exception e) {
+					
+				}								
+				av.setVisibility(View.VISIBLE);
+				if (ratio == 0)
+					ImageManager.showPicture(a.getAsset(), av, myapp.getExternalStorageFolder());
+				else
+					ImageManager.showPicture(a.getAsset(), av, myapp.getExternalStorageFolder(), ratio);
 			} else {
 				av.setVisibility(View.GONE);				
 			}

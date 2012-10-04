@@ -80,4 +80,20 @@ public class ImageManager {
 			scheduleDownloadTask(url, filename, imageView, 300, 300);
 		}
 	}
+	
+	public static void showPicture(String url, 
+			ImageView imageView, String appFolder, float ratio) {
+		imageView.setTag(url);
+
+		if (MiscUtils.removeNull(url).length() == 0)
+			return;
+		
+		File fFolder = new File(appFolder);
+		fFolder.mkdirs();
+		if (fFolder.exists()) {
+			String filename = appFolder + Encryption.md5(url) + ".jpg";
+			//System.out.println("Height/Width: "+imageView.getHeight() + "/" + imageView.getWidth());
+			scheduleDownloadTask(url, filename, imageView, (int)(300/ratio), 300);
+		}
+	}
 }

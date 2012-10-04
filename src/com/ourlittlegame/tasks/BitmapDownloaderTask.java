@@ -21,8 +21,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-import com.ourlittlegame.utilities.FlushedInputStream;
 import com.ourlittlegame.utilities.ImageManager;
 import com.ourlittlegame.utilities.MiscUtils;
 
@@ -104,6 +104,11 @@ public class BitmapDownloaderTask extends AsyncTask<String, Void, String> {
 					if (url.equals(tag)) {
 						imageView.setImageBitmap(bitmap);
 						imageView.setVisibility(View.VISIBLE);
+						
+						if (reqHeight != reqWidth) {
+							LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(reqWidth, reqHeight);
+							imageView.setLayoutParams(layoutParams);
+						}
 					}
 				}
 			}
