@@ -62,7 +62,7 @@ public class FeedListAdaptor extends ArrayAdapter<Activity> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = convertView;
-		if (v == null)
+		if (v == null || true)
 			v = vi.inflate(R.layout.feedlistitem, null);
 		
 		final Activity a = items.get(position);
